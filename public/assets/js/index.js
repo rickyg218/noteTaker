@@ -1,7 +1,7 @@
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
-const $saveNoteBtn = $("#save-note");
-const $newNoteBtn = $("#new-note");
+const $saveNoteBtn = $(".save-note");
+const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
 
 // activeNote is used to keep track of the note in the textarea
@@ -126,12 +126,11 @@ const renderNoteList = (notes) => {
   if (notes.length === 0) {
     noteListItems.push(create$li("No saved Notes", false));
   }
-console.log(notes)
-  // notes.forEach((note) => {
-  
-  //   const $li = create$li(note.title).data(note);
-  //   noteListItems.push($li);
-  // });
+
+  notes.forEach((note) => {
+    const $li = create$li(note.title).data(note);
+    noteListItems.push($li);
+  });
 
   $noteList.append(noteListItems);
 };

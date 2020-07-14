@@ -24,17 +24,17 @@ app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/notes.html"))
 })
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"));
 })
 
-app.get("/api/notes", function (req, res) {
-    // try{
-    //     const notesRaw = await readfileAsync(json,"utf8");
-    //    notesRaw ? currentNotes.push(...JSON.parse(notesRaw)):[] 
-    //  } catch(e){
-    //      console.log("wrong",e)
-    //  }
+app.get("/api/notes", async function (req, res) {
+    try{
+        const notesRaw = await readfileAsync(json,"utf8");
+       notesRaw ? currentNotes.push(...JSON.parse(notesRaw)):[] 
+     } catch(e){
+         console.log("wrong",e)
+     }
     console.log(res);
     return res.json(dbNotes);
 });
@@ -56,7 +56,7 @@ app.post('/api/notes', function (req, res) {
         console.log("notes sent");
         return newNotes
     });
-    res.db.json(newNotes);
+    res.json(newNotes);
 });
 
 app.delete('/api/notes/:id', function (req, res) {
@@ -70,11 +70,11 @@ app.delete('/api/notes/:id', function (req, res) {
         console.log("notes removed");
         return newNotes
     });
-    if (dbNotes === undefined || !dbNotes.length === 0){
-    for (let i = 0; i < dbNotes.length; i++) {
-        notes[i].id = i;
+    if (dbNotes === undefined || !dbNotes.length === 0) {
+        for (let i = 0; i < dbNotes.length; i++) {
+            notes[i].id = i;
+        }
     }
-}
 });
 
 
