@@ -70,10 +70,11 @@ app.delete('/api/notes/:id', function (req, res) {
         console.log("notes removed");
         return newNotes
     });
-    if (dbNotes === undefined || !dbNotes.length === 0) { }
+    if (dbNotes === undefined || !dbNotes.length === 0){
     for (let i = 0; i < dbNotes.length; i++) {
         notes[i].id = i;
     }
+}
 });
 
 
