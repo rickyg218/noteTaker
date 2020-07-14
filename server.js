@@ -61,6 +61,7 @@ app.post('/api/notes', function (req, res) {
 
 app.delete('/api/notes/:id', function (req, res) {
     const newNotes = req.params.id;
+    console.log(newNotes);
     dbNotes.splice(newNotes, 1);
     let stringNotes = JSON.stringify(dbNotes);
     fs.writeFile("db/db.json", stringNotes, function (err) {
@@ -70,11 +71,11 @@ app.delete('/api/notes/:id', function (req, res) {
         console.log("notes removed");
         return newNotes
     });
-    if (dbNotes === undefined || !dbNotes.length === 0) {
-        for (let i = 0; i < dbNotes.length; i++) {
-            notes[i].id = i;
-        }
-    }
+    // if (dbNotes === undefined || !dbNotes.length === 0) {
+    //     for (let i = 0; i < dbNotes.length; i++) {
+    //         notes[i].id = i;
+    //     }
+    // }
 });
 
 
